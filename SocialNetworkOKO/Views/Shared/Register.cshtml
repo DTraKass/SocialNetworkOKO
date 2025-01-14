@@ -1,9 +1,6 @@
 ﻿@model SocialNetworkOKO.Models.RegisterViewModel
 
-
-@{
-    ViewData["Title"] = "Register";
-}
+<title>@ViewData["Title"] = "Регистрация";</title>
 
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
@@ -33,7 +30,7 @@
             </select>
             <span asp-validation-for="Date" class="text-danger"></span>
 
-            <select asp-for="Month" class="form-control date_control" asp-items="Html.GetEnumSelectList<SocialNetworkOKO.Models.Months>()" onchange="PopulateDays()" ID="ddlMonth">
+            <select asp-for="Month" class="form-control date_control" asp-items="Html.GetEnumSelectList<SocialNetworkOKO.Models.RegisterViewModel.Months>()" onchange="PopulateDays()" ID="ddlMonth">
                 <option value="">@Model.Month</option>
             </select>
 
