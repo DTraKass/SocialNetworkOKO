@@ -39,7 +39,7 @@ namespace SocialNetworkOKO.Controllers
             return View("RegisterPart2", model);
         }
 
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
