@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetworkOKO.Models;
+using SocialNetworkOKO.Repositories;
 
 namespace SocialNetworkOKO.Controllers
 {
@@ -19,7 +20,7 @@ namespace SocialNetworkOKO.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("MyPage", "AccountManager");
                 }
                 else
                 {

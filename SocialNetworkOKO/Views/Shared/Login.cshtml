@@ -7,7 +7,7 @@
 <div class="block-reg background-white">
     <h4 class="center">Добро пожаловать!</h4>
     <form class="frm" method="post" asp-controller="AccountManager" asp-action="Login">
-        <div asp-validation-summary="ModelOnly"></div>
+        <div asp-validation-summary="All"></div>
         <div>
             <div class="mrgn">
                 <label asp-for="Email">Логин</label><br />
@@ -20,6 +20,12 @@
                 <label asp-for="Password">Пароль</label><br />
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="form-check">
+                <label asp-for="RememberMe">Запомнить меня</label>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </div>
         </div>
         <div>

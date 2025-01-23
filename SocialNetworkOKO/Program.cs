@@ -1,7 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkOKO.Controllers;
 using SocialNetworkOKO.DbContext;
+using SocialNetworkOKO.Mapper;
 using SocialNetworkOKO.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +24,14 @@ builder.Services.AddIdentity<User, IdentityRole>(opts => {
      opts.Password.RequireDigit = false;
  }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAutoMapper(typeof(RegisterController));
+var mapperConfig = new MapperConfiguration((v) =>
+{
+    v.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

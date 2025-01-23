@@ -9,6 +9,10 @@ namespace SocialNetworkOKO.Models
         public string FirstName { get; set; }
 
         [Required]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
+
+        [Required]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 

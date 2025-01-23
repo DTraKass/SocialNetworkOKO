@@ -1,0 +1,64 @@
+﻿@model SocialNetworkOKO.Models.UserEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="block-reg background-white">
+    <h4 class="center">Редактирование пользователя</h4>
+    <form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="FirstName">@Model.FirstName</label><br />
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="LastName">@Model.LastName</label><br />
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="MiddleName">@Model.MiddleName</label><br />
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="BirthDate">@Model.BirthDate</label><br />
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="UserName">@Model.Email</label><br />
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="Status">@Model.Status</label><br />
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="About">@Model.About</label><br />
+                <input asp-for="About" class="form-control" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <input class="btn-primary" type="submit" value="Сохранить" />
+        </div>
+    </form>
+</div>
