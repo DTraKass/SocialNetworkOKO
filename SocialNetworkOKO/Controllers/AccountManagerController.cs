@@ -43,7 +43,6 @@ namespace SocialNetworkOKO.Controllers
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            Console.WriteLine(model.ReturnUrl + "Это ЮРЛ");
             return View("Views/Home/Index.cshtml");
         }
 

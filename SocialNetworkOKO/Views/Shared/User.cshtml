@@ -3,3 +3,16 @@
 @{
     ViewData["Title"] = "Профиль";
 }
+<div class="align-lft">
+    <div class="img_us">
+        <img @Model.User.Image />
+    </div>
+    <form method="post" asp-controller="AccountManager" asp-action="Edit">
+        <input class="enter_submit" type="submit" value="Редактировать" />
+    </form>
+</div>
+<div class="align-rt">
+    <h4>@Model.User.GetFullName</h4>
+    <div class="inf_us">
+    </div>
+</div>
