@@ -25,7 +25,7 @@ namespace SocialNetworkOKO.Models
 
         public User()
         {
-            Image = "https://via.placeholder.com/500";
+            Image = "";
             Status = "Ура! Я в соцсети!";
             About = "Информация обо мне.";
         }

@@ -24,9 +24,10 @@ namespace SocialNetworkOKO.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = _mapper.Map<User>(model);
+                var userData = await _userManager.FindByEmailAsync(model.Email);
 
-                var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(userData, model.Password, model.RememberMe, false);
+
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))

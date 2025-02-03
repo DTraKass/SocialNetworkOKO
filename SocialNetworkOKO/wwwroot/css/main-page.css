@@ -26,7 +26,7 @@
 
 .topnav {
     padding: 20px;
-    text-align: center;
+    text-align:left;
     width: 100%;
     background-color: white;
 }
@@ -42,4 +42,17 @@
 
 .background-white {
     background-color: white;
+}
+
+.rht-aln {
+    display: flex;
+    justify-content: right;
+}
+.search {
+    display: flex;
+    justify-content: right;
+}
+
+.mrgn center{
+    position: center;
 }

@@ -1,0 +1,24 @@
+﻿.container_us {
+    max-width: 10000px;
+    display: flex;
+    
+}
+
+.align-lft {
+    justify-content: flex-start;
+    padding: 10px;
+    border-radius: 5px;
+    background: radial-gradient(mintcream 80%, #edeef0);
+}
+
+.align-rt {
+    margin-left: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    background: radial-gradient(mintcream 50%, #edeef0);
+}
+
+.img_us {
+    width: 100%;
+    max-width: max-content;
+}

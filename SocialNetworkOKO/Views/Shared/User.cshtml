@@ -1,18 +1,29 @@
-﻿@model SocialNetworkOKO.Models.UserViewModel
+﻿@model SocialNetworkOKO.Models.User
 
 @{
     ViewData["Title"] = "Профиль";
 }
-<div class="align-lft">
-    <div class="img_us">
-        <img @Model.User.Image />
+<head>
+    <link rel="stylesheet" href="~/css/Profile.css" />
+</head>
+
+<body>
+    <div class="container_us">
+        <div class="align-lft">
+            <div class="img_us">
+                <img src= @Model.Image/>
+            </div>
+            <form method="post" asp-controller="AccountManager" asp-action="Update">
+                <input class="enter_submit" type="submit" value="Редактировать" />
+            </form>
+        </div>
+        <div class="align-rt">
+            <h2>@Model.GetFullName()</h2>
+            <h5>
+                Дата рождения: @Model.BirthDate<br />
+                Cтатус: @Model.Status<br />
+                Информация: @Model.About
+            </h5>
+        </div>
     </div>
-    <form method="post" asp-controller="AccountManager" asp-action="Edit">
-        <input class="enter_submit" type="submit" value="Редактировать" />
-    </form>
-</div>
-<div class="align-rt">
-    <h4>@Model.User.GetFullName</h4>
-    <div class="inf_us">
-    </div>
-</div>
+</body>

@@ -12,10 +12,14 @@
 <body class="background-main">
     <header class="border-bottom header background-white">
             <div class="container">
-            <partial name="Logout" />
+                <div class="rht-aln">
+                    <partial name="Logout" />
+                    <div class="search">
+                        <partial name="Search" />
+                    </div>
+                </div>
                 <div class="topnav">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
-                <partial name="Search" />
+                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">ОКО</a>
                 </div>
             </div>
     </header>
