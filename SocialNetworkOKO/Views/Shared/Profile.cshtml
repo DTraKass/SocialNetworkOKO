@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form method="get" asp-controller="AccountManager" asp-action="MyPage">
+        <input class="btn btn-primary" type="submit" value="Профиль" />
+    </form>
+}
