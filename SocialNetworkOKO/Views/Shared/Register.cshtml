@@ -25,24 +25,25 @@
         </div>
 
         <div class="text-color-gray text-size_12">Дата рождения</div>
-        <div class="mrgn center">
-            <select asp-for="Date" class="form-control date_control" ID="ddlDay">
-                <option value="">@(Model?.Date)</option>
-            </select>
-            <span asp-validation-for="Date" class="text-danger"></span>
+        <div class="mrgn-center">
 
-            <select asp-for="Month" class="form-control date_control"
-                    asp-items="@(Model != null ? Html.GetEnumSelectList<SocialNetworkOKO.Models.RegisterViewModel.Months>() : new List<SelectListItem>())"
-                    onchange="PopulateDays()" id="ddlMonth">
-                <option value="">@(Model?.Month)</option>
+            <select asp-for="Month" class="form-control date_control" asp-items="Html.GetEnumSelectList<SocialNetworkOKO.Models.RegisterViewModel.Months>()" onchange="PopulateDays()" ID="ddlMonth">
+                <option value="">0</option>
             </select>
+
+            <span asp-validation-for="Month" class="text-danger"></span>
 
             <select asp-for="Year" class="form-control date_control" ID="ddlYear"
                     asp-items="Enumerable.Range(DateTime.Now.AddYears(-100).Year, DateTime.Now.AddYears(-14).Year - DateTime.Now.AddYears(-100).Year).Reverse().Select(x=> new SelectListItem(x.ToString(), x.ToString()))"
                     onchange="PopulateDays()">
-                <option value="">@(Model?.Year)</option>
+                <option value="">0</option>
             </select>
             <span asp-validation-for="Year" class="text-danger"></span>
+
+            <select asp-for="Date" class="form-control date_control" ID="ddlDay">
+                <option value="">0</option>
+            </select>
+            <span asp-validation-for="Date" class="text-danger"></span>
         </div>
 
         <div class="center">

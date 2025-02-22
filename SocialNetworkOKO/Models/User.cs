@@ -4,6 +4,13 @@ namespace SocialNetworkOKO.Models
 {
     public class User : IdentityUser
     {
+        public User()
+        {
+            Image = "1";
+            Status = "Ура! Я в соцсети!";
+            About = "Информация обо мне.";
+        }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -21,13 +28,6 @@ namespace SocialNetworkOKO.Models
         public string GetFullName()
         {
             return FirstName + " " + MiddleName + " " + LastName;
-        }
-
-        public User()
-        {
-            Image = "";
-            Status = "Ура! Я в соцсети!";
-            About = "Информация обо мне.";
         }
     }
 }

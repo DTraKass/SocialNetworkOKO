@@ -14,8 +14,6 @@
             user.Status = usereditvm.Status;
             user.About = usereditvm.About;
 
-            
-
             return user;
         }
     }

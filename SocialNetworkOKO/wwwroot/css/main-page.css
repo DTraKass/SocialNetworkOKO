@@ -25,10 +25,10 @@
 }
 
 .topnav {
-    padding: 20px;
-    text-align:left;
-    width: 100%;
-    background-color: white;
+    padding-bottom: 5px;
+    display: flex;
+    position: relative;
+    justify-content: left;
 }
 
 .main-img {
@@ -45,14 +45,34 @@
 }
 
 .rht-aln {
-    display: flex;
-    justify-content: right;
+
 }
 .search {
     display: flex;
-    justify-content: right;
+    padding-top: 5px;
+    padding-right: 5px;
 }
 
-.mrgn center{
+.img-search {
+    position: absolute;
+    padding-right: 10px;
+    width: 100%;
+    max-width: max-content;
+}
+
+.right-align {
+    display: flex;
+    justify-content: end;
+}
+
+.button-profile{
+    padding:5px;
+}
+
+.button-logout{
+    padding: 5px;
+}
+
+.mrgn-center {
     position: center;
 }

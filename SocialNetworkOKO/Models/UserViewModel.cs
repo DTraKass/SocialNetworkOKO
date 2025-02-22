@@ -1,4 +1,5 @@
-﻿namespace SocialNetworkOKO.Models
+﻿
+namespace SocialNetworkOKO.Models
 {
     public class UserViewModel
     {

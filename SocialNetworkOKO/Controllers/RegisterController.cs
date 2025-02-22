@@ -16,6 +16,7 @@ namespace SocialNetworkOKO.Controllers
             {
                 var user = _mapper.Map<User>(model);
                 user.Email = model.EmailReg;
+                user.BirthDate = new DateTime(model.Year, model.Month, model.Date);
                 var result = await _userManager.CreateAsync(user, model.PasswordReg);
                 if (result.Succeeded)
                 {

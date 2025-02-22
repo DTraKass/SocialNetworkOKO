@@ -42,7 +42,7 @@ namespace SocialNetworkOKO.Models
         [Compare("PasswordReg", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
-        public string PasswordConfirm { get; set; }
+        public string PasswordConfirm {  get; set; }
 
         [Required]
         [Display(Name = "Никнейм")]
