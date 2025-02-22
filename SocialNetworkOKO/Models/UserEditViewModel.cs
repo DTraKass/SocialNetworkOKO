@@ -8,22 +8,22 @@ namespace SocialNetworkOKO.Models
         public string UserId { get; set; }
 
         [Required]
-        public string FirstName { get; internal set; }
+        public string FirstName { get;  set; }
 
         [Required]
-        public string LastName { get; internal set; }
+        public string LastName { get;  set; }
 
         [Required]
-        public string MiddleName { get; internal set; }
+        public string MiddleName { get;  set; }
 
         [Required]
-        public DateTime BirthDate { get; internal set; }
+        public DateTime BirthDate { get;  set; }
 
         [Required]
-        public string Image { get; internal set; }
+        public string Image { get;  set; }
 
         [Required]
-        public string Status { get; internal set; }
+        public string Status { get; set; }
         [Required]
         public string About { get; internal set; }
 

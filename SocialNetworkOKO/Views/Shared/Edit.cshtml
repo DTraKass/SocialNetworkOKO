@@ -13,49 +13,54 @@
         <div asp-validation-summary="ModelOnly"></div>
         <div>
             <div class="mrgn">
-                <label asp-for="FirstName"></label><br />
+                <input asp-for="UserId" hidden />
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <label asp-for="FirstName">Имя</label><br />
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="LastName"></label><br />
+                <label asp-for="LastName">Фамилия</label><br />
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="MiddleName"></label><br />
+                <label asp-for="MiddleName">Отчество</label><br />
                 <input asp-for="MiddleName" class="form-control" />
                 <span asp-validation-for="MiddleName" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="BirthDate"></label><br />
+                <label asp-for="BirthDate">Дата рождения</label><br />
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="Email"></label><br />
+                <label asp-for="Email">Email</label><br />
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="Status"></label><br />
+                <label asp-for="Status">Статус</label><br />
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
         </div>
         <div>
             <div class="mrgn">
-                <label asp-for="About"></label><br />
+                <label asp-for="About">Другая информация</label><br />
                 <input asp-for="About" class="form-control" />
                 <span asp-validation-for="About" class="text-danger"></span>
             </div>
