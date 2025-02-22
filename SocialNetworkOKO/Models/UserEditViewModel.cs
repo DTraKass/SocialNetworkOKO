@@ -25,7 +25,7 @@ namespace SocialNetworkOKO.Models
         [Required]
         public string Status { get; set; }
         [Required]
-        public string About { get; internal set; }
+        public string About { get; set; }
 
         [Required]
         public string UserName { get; set; }
