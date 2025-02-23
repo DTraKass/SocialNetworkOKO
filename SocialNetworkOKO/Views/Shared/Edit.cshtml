@@ -9,7 +9,7 @@
 
 <div class="block-reg background-white">
     <h4 class="center">Редактирование пользователя</h4>
-    <form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+    <a class="frm" method="get" asp-controller="AccountManager" asp-action="Update">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
             <div class="mrgn">
@@ -68,6 +68,6 @@
         <div>
             <input class="btn btn-primary" type="submit" value="Сохранить" />
         </div>
-    </form>
+    </a>
 </div>
 

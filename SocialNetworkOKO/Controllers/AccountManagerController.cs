@@ -68,32 +68,34 @@ namespace SocialNetworkOKO.Controllers
             return View("User", new UserViewModel(result.Result));
         }
 
-        [Authorize]
         [Route("Update")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Update(UserEditViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByIdAsync(model.UserId);
 
-                user.Convert(model);
+            //if (ModelState.IsValid)
+            //{
+                //var user = await _userManager.FindByIdAsync(model.UserId);
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-                var result = await _userManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("MyPage", "AccountManager");
-                }
-                else
-                {
-                    return RedirectToAction("Edit", "AccountManager");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "Некорректные данные");
-                return View("Edit", model);
-            }
+                //user.Convert(model);
+                return View("Edit", _mapper.Map<UserEditViewModel>(user));
+
+                //var result = await _userManager.UpdateAsync(user);
+                //if (result.Succeeded)
+                //{
+                //    return RedirectToAction("MyPage", "AccountManager");
+                //}
+                //else
+                //{
+                //    return RedirectToAction("Edit", "AccountManager");
+                //}
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", "Некорректные данные");
+            //    return View("Edit", model);
+            //}
         }
 
         [Route("UserList")]
