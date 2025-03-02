@@ -18,16 +18,12 @@ namespace SocialNetworkOKO.Models
 
         [Required]
         public DateTime BirthDate { get;  set; }
-
-        [Required]
         public string Image { get;  set; }
 
         [Required]
         public string Status { get; set; }
         [Required]
         public string About { get; set; }
-
-        [Required]
         public string UserName { get; set; }
 
         [Required]

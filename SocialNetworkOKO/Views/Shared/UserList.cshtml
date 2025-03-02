@@ -9,11 +9,23 @@
         {
             <div>
                 <label>@user.GetFullName()</label>
+                @if (!@user.UserWit)
+                {
+                    <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Добавить в друзья
+                        </button>
+                    </form>
+                }
             </div>
         }
     }
     else
     {
-        <label> Поиск не дал результатов.</label>
+        <div>
+            <label> Поиск не дал результатов.</label>
+        </div>
     }
+
+
 </div>

@@ -2,6 +2,7 @@
     -ms-flex: 40%; /* IE10 */
     flex: 40%;
     padding: 20px;
+    border-radius: 20px;
 }
 
 
@@ -25,10 +26,9 @@
 }
 
 .topnav {
+    flex: 40%;
     padding-bottom: 5px;
-    display: flex;
-    position: relative;
-    justify-content: left;
+    padding-top: 5px;
 }
 
 .main-img {

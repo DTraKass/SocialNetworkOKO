@@ -13,9 +13,7 @@
             <div class="img_us">
                 <img src= @Model.User.Image/>
             </div>
-            <form method="post" asp-controller="AccountManager" asp-action="Update">
-                <input class="btn btn-primary" type="submit" value="Редактировать" />
-            </form>
+            <a asp-controller="AccountManager" asp-action="Update" class="btn btn-primary">Редактировать</a>
         </div>
         <div class="align-rt">
             <h2>@Model.User.GetFullName()</h2>

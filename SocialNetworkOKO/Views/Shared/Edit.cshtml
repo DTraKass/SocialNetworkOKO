@@ -6,68 +6,70 @@
 
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<body>
+    <div class="block-reg background-white">
+        <h4 class="center">Редактирование пользователя</h4>
+        <form class="frm" method="get" asp-controller="AccountManager" asp-action="Update">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <div class="mrgn">
+                    <input asp-for="UserId" hidden />
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="FirstName">Имя</label><br />
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="LastName">Фамилия</label><br />
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="MiddleName">Отчество</label><br />
+                    <input asp-for="MiddleName" class="form-control" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="BirthDate">Дата рождения</label><br />
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="Email">Email</label><br />
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="Status">Статус</label><br />
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <div class="mrgn">
+                    <label asp-for="About">Другая информация</label><br />
+                    <input asp-for="About" class="form-control" />
+                    <span asp-validation-for="About" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Сохранить" />
+            </div>
+        </form>
+    </div>
+</body>
 
-<div class="block-reg background-white">
-    <h4 class="center">Редактирование пользователя</h4>
-    <a class="frm" method="get" asp-controller="AccountManager" asp-action="Update">
-        <div asp-validation-summary="ModelOnly"></div>
-        <div>
-            <div class="mrgn">
-                <input asp-for="UserId" hidden />
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="FirstName">Имя</label><br />
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="LastName">Фамилия</label><br />
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="MiddleName">Отчество</label><br />
-                <input asp-for="MiddleName" class="form-control" />
-                <span asp-validation-for="MiddleName" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="BirthDate">Дата рождения</label><br />
-                <input asp-for="BirthDate" class="form-control" />
-                <span asp-validation-for="BirthDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="Email">Email</label><br />
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="Status">Статус</label><br />
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <div class="mrgn">
-                <label asp-for="About">Другая информация</label><br />
-                <input asp-for="About" class="form-control" />
-                <span asp-validation-for="About" class="text-danger"></span>
-            </div>
-        </div>
-        <div>
-            <input class="btn btn-primary" type="submit" value="Сохранить" />
-        </div>
-    </a>
-</div>
 

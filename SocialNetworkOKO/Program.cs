@@ -5,6 +5,7 @@ using SocialNetworkOKO.Controllers;
 using SocialNetworkOKO.DbContext;
 using SocialNetworkOKO.Mapper;
 using SocialNetworkOKO.Models;
+using SocialNetworkOKO.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,9 @@ builder.Services.AddControllersWithViews();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection))
+   .AddUnitOfWork()
+   .AddCustomRepository<Friend, FriendsRepository>();
 
 builder.Services.AddIdentity<User, IdentityRole>(opts => {
      opts.Password.RequiredLength = 5;
@@ -23,6 +26,7 @@ builder.Services.AddIdentity<User, IdentityRole>(opts => {
      opts.Password.RequireUppercase = false;
      opts.Password.RequireDigit = false;
  }).AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 var mapperConfig = new MapperConfiguration((v) =>
 {
