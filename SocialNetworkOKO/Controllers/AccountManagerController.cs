@@ -123,9 +123,9 @@ namespace SocialNetworkOKO.Controllers
         }
 
         private IMapper _mapper;
-
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly UnitOfWork _unitOfWork;
 
         public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
         {

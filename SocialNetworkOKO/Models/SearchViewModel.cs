@@ -3,6 +3,6 @@ namespace SocialNetworkOKO.Models
 {
     public class SearchViewModel
     {
-        public List<User> UserList { get; internal set; }
+        public List<UserWithFriendExt> UserList { get; internal set; }
     }
 }
