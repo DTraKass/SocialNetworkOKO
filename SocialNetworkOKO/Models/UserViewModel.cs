@@ -10,5 +10,7 @@ namespace SocialNetworkOKO.Models
             User = user;
         }
 
+        public List<User> Friends { get; set; }
+
     }
 }

@@ -12,6 +12,7 @@ namespace SocialNetworkOKO.Mapper
             CreateMap<LoginViewModel, User>()
         .ForMember(x => x.Email, opt => opt.MapFrom(c => c.Email));
             CreateMap<UserEditViewModel, User>().ReverseMap();
+            CreateMap<UserWithFriendExt, User>().ReverseMap();
         }
     }
 }

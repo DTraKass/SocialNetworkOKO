@@ -7,7 +7,7 @@ namespace SocialNetworkOKO.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _blogContext;
-        private Dictionary<Type, object> _repositories;
+        private Dictionary<Type, object>? _repositories;
 
         public UnitOfWork(ApplicationDbContext blogContext)
         {

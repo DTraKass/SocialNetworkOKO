@@ -37,7 +37,7 @@ namespace SocialNetworkOKO.Repositories
 
         public T Get(int id)
         {
-            return Set.Find(id);
+            return Set.Find(id)!;
         }
 
         public IEnumerable<T> GetAll()
