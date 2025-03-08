@@ -27,7 +27,7 @@ namespace SocialNetworkOKO.Controllers
 
                 var userData = await _userManager.FindByEmailAsync(model.Email);
 
-                var result = await _signInManager.PasswordSignInAsync(userData, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(userData!, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
@@ -57,23 +57,34 @@ namespace SocialNetworkOKO.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         [Route("MyPage")]
         [HttpGet]
-        [Authorize]
-        public IActionResult MyPage()
+        public async Task<IActionResult> MyPage()
         {
             var user = User;
 
-            var result = _userManager.GetUserAsync(user);
+            var result = await _userManager.GetUserAsync(user);
 
-            return View("User", new UserViewModel(result.Result));
+            var model = new UserViewModel(result);
+
+            model.Friends = await GetAllFriend(model.User);
+
+            return View("User", model);
+        }
+
+        private async Task<List<User>> GetAllFriend(User user)
+        {
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            return repository.GetFriendsByUser(user);
         }
 
         [Route("Update")]
         [HttpGet]
         public async Task<IActionResult> Update(UserEditViewModel model)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByNameAsync(User.Identity!.Name!);
 
             return View("Edit", _mapper.Map<UserEditViewModel>(user));
         }
@@ -91,7 +102,7 @@ namespace SocialNetworkOKO.Controllers
             list.ForEach(x =>
             {
                 var t = _mapper.Map<UserWithFriendExt>(x);
-                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result!.Id).Count() != 0;
                 data.Add(t);
             });
 
@@ -111,7 +122,7 @@ namespace SocialNetworkOKO.Controllers
 
             var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
 
-            return repository.GetFriendsByUser(result);
+            return repository!.GetFriendsByUser(result!);
         }
 
         [Route("UserList")]
@@ -122,16 +133,53 @@ namespace SocialNetworkOKO.Controllers
             return View("UserList", model);
         }
 
+        [Route("AddFriend")]
+        [HttpPost]
+        public async Task<IActionResult> AddFriend(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            repository.AddFriend(result, friend);
+
+            return RedirectToAction("MyPage", "AccountManager");
+
+        }
+
+        [Route("DeleteFriend")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteFriend(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            repository.DeleteFriend(result, friend);
+
+            return RedirectToAction("MyPage", "AccountManager");
+
+        }
+
         private IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
+        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
     }
 }
