@@ -7,9 +7,10 @@ namespace SocialNetworkOKO.DbContext
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
 
         }
     }

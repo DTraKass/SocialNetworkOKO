@@ -17,7 +17,8 @@ string connection = builder.Configuration.GetConnectionString("DefaultConnection
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection))
    .AddUnitOfWork()
-   .AddCustomRepository<Friend, FriendsRepository>();
+   .AddCustomRepository<Friend, FriendsRepository>()
+   .AddCustomRepository<Message, MessageRepository>();
 
 builder.Services.AddIdentity<User, IdentityRole>(opts => {
      opts.Password.RequiredLength = 5;

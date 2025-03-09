@@ -1,0 +1,38 @@
+﻿@model ChatViewModel
+
+@{
+    ViewData["Title"] = "Чат с " + Model.ToWhom.UserName;
+}
+
+<h2>Чат с @Model.ToWhom.UserName</h2>
+@* <meta http-equiv="refresh" content="5"> *@
+<div>
+    <h3>Чат</h3>
+    <div id="messageHistory" style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+        @if (Model.History.Any())
+        {
+            foreach (var message in Model.History)
+            {
+                <div class="message">
+                    <strong>@message.Sender.UserName:</strong> @message.Text
+                    <span class="message-time">(@message.Timestamp.TimeOfDay.ToString("g"))</span>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No messages yet.</p>
+        }
+    </div>
+
+    <h3>Send a New Message</h3>
+    <form asp-action="NewMessage" method="post">
+        <input type="hidden" name="id" value="@Model.ToWhom.Id" />
+        <div>
+            <textarea name="NewMessage.Text" required placeholder="Введите сообщение..."></textarea>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">отправить</button>
+        </div>
+    </form>
+</div>

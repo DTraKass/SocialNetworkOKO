@@ -16,5 +16,10 @@
         Блок авторизации
         <partial name="Register"/>
     </div>
+    <h2>Генератор пользователей</h2>
+
+    <form asp-controller="Account" asp-action="Generate" method="get">
+        <button type="submit" class="btn btn-primary">Generate Users</button>
+    </form>
 
 </div>
