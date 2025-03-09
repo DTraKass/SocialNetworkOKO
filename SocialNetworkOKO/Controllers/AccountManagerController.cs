@@ -242,7 +242,7 @@ namespace SocialNetworkOKO.Controllers
                         LastName = GenerateRandomString(7),
                         MiddleName = GenerateRandomString(6),
                         BirthDate = GenerateRandomDate(),
-                        Image = "default.png", // Можно загружать изображения из каталога
+                        Image = "default.png",
                         Status = "Online",
                         About = GenerateRandomString(20)
                     });
@@ -260,7 +260,6 @@ namespace SocialNetworkOKO.Controllers
 
             private DateTime GenerateRandomDate()
             {
-                // Генерация случайной даты рождения между 1970 и 2000 годами
                 var start = new DateTime(1970, 1, 1);
                 var end = new DateTime(2000, 1, 1);
                 int range = (end - start).Days;
@@ -277,10 +276,10 @@ namespace SocialNetworkOKO.Controllers
 
             foreach (var user in userlist)
             {
-                var identityUser = new User // Здесь вы должны создать и заполнить объект User
+                var identityUser = new User
                 {
-                    UserName = user.FirstName.ToLower() + user.LastName.ToLower(), // Придумайте уникальное имя
-                    Email = user.FirstName.ToLower() + "@test", // Придумайте уникальный email
+                    UserName = user.FirstName.ToLower() + user.LastName.ToLower(),
+                    Email = user.FirstName.ToLower() + "@test",
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     MiddleName = user.MiddleName,
@@ -288,7 +287,6 @@ namespace SocialNetworkOKO.Controllers
                     Image = user.Image,
                     Status = user.Status,
                     About = user.About,
-                    // и другие поля по необходимости
                 };
 
                 var result = await _userManager.CreateAsync(identityUser, "123456");
