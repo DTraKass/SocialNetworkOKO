@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,13 +17,20 @@
             <div class="container">
                 <div class="right-align">
                     <div class="topnav">
-                        <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">ОКО</a>
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><img class="OKO-Icon" src="~/icons/OKOIcon.jpeg" /></a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="AccountManager" asp-action="MyPage"><img class="OKO-Icon" src="~/icons/OKOIcon.jpeg" /></a>
+                    }
                     </div>
                     <div class="search">
                         <partial name="Search" />
-                        <div class="img-search">
-                            <img src= "~/icons/search_icon.jpg" />
-                        </div>
+                    </div>
+                    <div class="img-search-container">
+                        <img class="img-search" src="~/icons/search_icon.jpg" />
                     </div>
                     <partial name="Profile" />
                     <partial name="Logout" />

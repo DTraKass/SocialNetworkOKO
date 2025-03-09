@@ -31,9 +31,9 @@ namespace SocialNetworkOKO.Repositories
 
         public List<User> GetFriendsByUser(User target)
         {
-            var friends = Set.Include(x => x.CurrentFriend).Include(x => x.User).AsEnumerable().Where(x => x.User!.Id == target.Id).Select(x => x.CurrentFriend);
+            var friends = Set.Include(x => x.CurrentFriend).Include(x => x.User).AsEnumerable().Where(x => x.User.Id == target.Id).Select(x => x.CurrentFriend);
 
-            return friends.ToList()!;
+            return friends.ToList();
         }
 
         public void DeleteFriend(User target, User Friend)

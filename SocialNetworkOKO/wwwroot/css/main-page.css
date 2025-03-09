@@ -44,20 +44,22 @@
     background-color: white;
 }
 
-.rht-aln {
-
+.OKO-Icon {
+    width: 80px;
+    height: 50px;
 }
+
 .search {
-    display: flex;
+    left: 1030px;
     padding-top: 5px;
     padding-right: 5px;
 }
-
+.img-search-container {
+    padding-top:5px;
+}
 .img-search {
-    position: absolute;
-    padding-right: 10px;
-    width: 100%;
-    max-width: max-content;
+    width: 28px;
+    height: 28px;
 }
 
 .right-align {

@@ -1,21 +1,37 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetworkOKO.Models;
+using SocialNetworkOKO.Repositories;
 using System.Diagnostics;
 
 namespace SocialNetworkOKO.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IMapper _mapper;
+        private readonly SignInManager<User> _signInManager;
+
+        public HomeController(ILogger<HomeController> logger, SignInManager<User> signInManager, IMapper mapper)
         {
             _logger = logger;
+            _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            return View();
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("MyPage", "AccountManager");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()
