@@ -6,7 +6,7 @@ namespace SocialNetworkOKO.Models
     {
         public User()
         {
-            Image = "1";
+            Image = "";
             Status = "Ура! Я в соцсети!";
             About = "Информация обо мне.";
         }

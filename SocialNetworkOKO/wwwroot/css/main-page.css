@@ -1,80 +1,96 @@
-﻿.main {
-    -ms-flex: 40%; /* IE10 */
-    flex: 40%;
-    padding: 20px;
-    border-radius: 20px;
+﻿body.background-main {
+    background-color: #e9ecef;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
 }
 
-
-.side {
-    -ms-flex: 60%; /* IE10 */
-    flex: 60%;
-    padding: 20px;
+.header {
+    padding: 20px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.row {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
-    flex-wrap: wrap;
+.border-bottom {
+    border-bottom: 2px solid #007bff;
 }
 
-.footer {
-    padding: 20px;
-    text-align: center;
-    background-color: #edeef0;
-}
-
-.topnav {
-    flex: 40%;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-
-.main-img {
-    width: 100%;
-    max-width: max-content;
-}
-
-.background-main {
-    background-color: #edeef0;
-}
-
-.background-white {
-    background-color: white;
-}
-
-.OKO-Icon {
-    width: 80px;
-    height: 50px;
-}
-
-.search {
-    left: 1030px;
-    padding-top: 5px;
-    padding-right: 5px;
-}
-.img-search-container {
-    padding-top:5px;
-}
-.img-search {
-    width: 28px;
-    height: 28px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .right-align {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.button-profile{
-    padding:5px;
+.topnav {
+    margin-right: 20px;
 }
 
-.button-logout{
-    padding: 5px;
+.OKO-Icon {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s;
 }
 
-.mrgn-center {
-    position: center;
+    .OKO-Icon:hover {
+        transform: scale(1.1);
+    }
+
+.search {
+    margin-right: 20px;
+}
+
+.img-search-container {
+    display: flex;
+    align-items: center;
+}
+
+.img-search {
+    width: 30px;
+    height: auto;
+}
+
+.footer {
+    padding: 15px 0;
+    text-align: center;
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+    .footer a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .right-align {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topnav {
+        margin-bottom: 10px;
+    }
+
+    .OKO-Icon {
+        width: 40px;
+    }
 }

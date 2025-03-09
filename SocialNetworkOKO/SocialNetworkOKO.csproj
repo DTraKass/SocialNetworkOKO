@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\icons\OKOIcon.jpeg" />
+    <Content Remove="wwwroot\icons\UserIcon.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +16,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="wwwroot\icons\search_icon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="wwwroot\icons\UserIcon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

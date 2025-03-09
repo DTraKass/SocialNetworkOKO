@@ -3,15 +3,12 @@
 @{
     ViewData["Title"] = "Профиль";
 }
-<head>
-    <link rel="stylesheet" href="~/css/Profile.css" />
-</head>
 
 <body>
     <div class="container_us">
         <div class="align-lft">
-            <div class="img_us">
-                <img src= @Model.User.Image/>
+            <div>
+                <img class="img_us" src="~/icons/UserIcon.jpg" />
             </div>
             <a asp-controller="AccountManager" asp-action="Update" class="btn btn-primary">Редактировать</a>
         </div>
@@ -26,7 +23,7 @@
             @foreach (var user in @Model.Friends)
             {
                 <div>
-                    <img src="@user.Image" />
+                    <img src="~/icons/UserIcon.jpg" />
                     <label>@user.GetFullName()</label>
                     <form asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@user.Id" method="post">
                         <button type="submit" class="btn btn-sm btn-primary">
