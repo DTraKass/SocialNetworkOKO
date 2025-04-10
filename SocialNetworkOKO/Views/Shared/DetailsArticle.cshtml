@@ -1,0 +1,136 @@
+﻿@model SocialNetworkOKO.Models.Article
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="article-details">
+    <h1>@Model.Title</h1>
+    <p><strong>Автор:</strong> @Model.Author</p>
+    <p><strong>Дата создания:</strong> @Model.CreatedDate.ToString("yyyy-MM-dd")</p>
+    <hr />
+    <p>@Model.Content</p>
+
+    <h3>Теги:</h3>
+    <ul class="tags-list">
+        @foreach (var tag in Model.ArticleTags)
+        {
+            <li>@tag.Tag.Name</li>
+        }
+    </ul>
+
+    <form method="post" asp-controller="Article" asp-action="Articles">
+        <input class="btn btn-primary" type="submit" value="Назад к списку статей" />
+    </form>
+</div>
+
+<hr />
+
+<h3>Связанные статьи:</h3>
+<div class="related-articles">
+    <ul class="list-group">
+        @foreach (var relatedArticle in Model.RelatedArticles)
+        {
+            <li class="list-group-item">
+                <a asp-controller="Articles" asp-action="DetailsArticle" asp-route-id="@relatedArticle.Id">
+                    @relatedArticle.Title
+                </a>
+                <p class="text-muted">Автор: @relatedArticle.Author</p>
+            </li>
+        }
+    </ul>
+</div>
+
+<hr />
+
+<h3>Комментарии:</h3>
+<div class="comments-section">
+    @if (Model.Comments != null && Model.Comments.Any())
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <div class="comment">
+                <strong>@comment.Author</strong> <em>@comment.Date.ToString("yyyy-MM-dd HH:mm")</em>
+                <p>@comment.Text</p>
+                <hr />
+            </div>
+        }
+    }
+    else
+    {
+        <p>Нет комментариев.</p>
+    }
+</div>
+
+<h4>Добавить комментарий:</h4>
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="articleId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="author">Имя:</label>
+        <input type="text" name="author" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="text">Комментарий:</label>
+        <textarea name="text" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Отправить</button>
+</form>
+
+<style>
+    .article-details {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .tags-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .tags-list li {
+            display: inline;
+            margin-right: 10px;
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+    .related-articles {
+        margin-top: 20px;
+    }
+
+    .list-group {
+        padding: 0;
+    }
+
+    .list-group-item {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .comments-section {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>

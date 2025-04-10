@@ -21,6 +21,7 @@
             <div class="container">
                 <div class="right-align">
                     <div class="topnav">
+                    <partial name="ArticlesButton" />
                     @if (!SignInManager.IsSignedIn(User))
                     {
                         <a asp-area="" asp-controller="Home" asp-action="Index"><img class="OKO-Icon" src="~/icons/OKOIcon.jpeg" /></a>

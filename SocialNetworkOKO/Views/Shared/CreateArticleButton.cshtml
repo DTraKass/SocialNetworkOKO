@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<div class="button-create-article">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form method="post" asp-controller="Article" asp-action="CreateArticle">
+            <input class="btn btn-primary" type="submit" value="Создать статью" />
+        </form>
+    }
+</div>

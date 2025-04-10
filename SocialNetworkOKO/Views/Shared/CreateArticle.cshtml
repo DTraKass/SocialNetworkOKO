@@ -1,0 +1,99 @@
+﻿@model SocialNetworkOKO.Models.Article
+
+@{
+    ViewData["Title"] = "Создание статьи";
+}
+
+<h1>Создать статью</h1>
+
+<form method="post" asp-controller="Article" asp-action="CreateArticle">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="Author" class="control-label">Автор статьи</label>
+        <input asp-for="Author" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Название статьи</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Содержание статьи</label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedDate" class="control-label">Дата создания статьи</label>
+        <input asp-for="CreatedDate" class="form-control" type="datetime" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Выберите теги:</label>
+        <select id="ArticleTags" asp-for="ArticleTags" class="form-control" multiple>
+            @foreach (var tag in ViewBag.Tags)
+            {
+                <option value="@tag.Id">@tag.Name</option>
+            }
+        </select>
+    </div>
+
+    <h3>Создать новый тег</h3>
+    <div class="form-group">
+        <label for="newTagName">Название тега:</label>
+        <input type="text" id="newTagName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="button" id="addTagButton" class="btn btn-primary">Добавить тег</button>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Создать</button>
+        <a asp-controller="AccountManager" asp-action="MyPage" class="btn btn-secondary">Отмена</a>
+    </div>
+
+    <input type="hidden" name="ArticleTags" id="hiddenTags" />
+
+    <input type="hidden" name="newTagName" id="newTagNameHidden" />
+</form>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("addTagButton").addEventListener("click", function () {
+                var tagName = document.getElementById("newTagName").value;
+                console.log("Кнопка нажата, введенное имя тега:", tagName); // Для отладки
+
+                if (tagName) {
+                    var select = document.getElementById("ArticleTags");
+                    console.log("Выбранный элемент select:", select); // Для отладки
+
+                    if (select) {
+                        var option = document.createElement("option");
+                        option.text = tagName;
+                        select.add(option);
+
+                        // Обновляем скрытое поле
+                        var hiddenTags = document.getElementById("hiddenTags");
+                        if (hiddenTags.value) {
+                            hiddenTags.value += "," + tagName; // Добавляем новый тег
+                        } else {
+                            hiddenTags.value = tagName; // Устанавливаем первый тег
+                        }
+
+                        // Обновляем скрытое поле для нового тега
+                        document.getElementById("newTagNameHidden").value = tagName;
+
+                        document.getElementById("newTagName").value = ""; // Очищаем поле
+                        console.log("Тег добавлен:", option);
+                    } else {
+                        console.error("Элемент select не найден!");
+                    }
+                    //Для меня было очень сложно реализовать эту логику, почему-то :(
+                }
+            });
+        });
+    </script>
+}

@@ -11,6 +11,7 @@
                 <img class="img_us" src="~/icons/UserIcon.jpg" />
             </div>
             <a asp-controller="AccountManager" asp-action="Update" class="btn btn-primary">Редактировать</a>
+            <partial name="CreateArticleButton" />
         </div>
         <div class="align-rt">
             <h2>@Model.User.GetFullName()</h2>
