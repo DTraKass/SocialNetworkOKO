@@ -26,7 +26,8 @@ builder.Services.AddIdentity<User, IdentityRole>(opts => {
      opts.Password.RequireLowercase = false;
      opts.Password.RequireUppercase = false;
      opts.Password.RequireDigit = false;
- }).AddEntityFrameworkStores<ApplicationDbContext>();
+ }).AddEntityFrameworkStores<ApplicationDbContext>()
+   .AddRoles<IdentityRole>();
 
 
 var mapperConfig = new MapperConfiguration((v) =>
@@ -39,6 +40,8 @@ IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
+
+await InitializeRoles(app.Services);
 
     app.UseAuthentication();
     app.UseAuthorization();
@@ -63,3 +66,21 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+async Task InitializeRoles(IServiceProvider serviceProvider)
+{
+    // Создаем область для получения RoleManager
+    using (var scope = serviceProvider.CreateScope())
+    {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        string[] roleNames = { "Admin", "User", "Manager" };
+
+        foreach (var roleName in roleNames)
+        {
+            if (!await roleManager.RoleExistsAsync(roleName))
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+        }
+    }
+}

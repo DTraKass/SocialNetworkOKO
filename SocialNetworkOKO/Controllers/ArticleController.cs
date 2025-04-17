@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkOKO.DbContext;
 using SocialNetworkOKO.Models;
@@ -200,7 +201,81 @@ namespace SocialNetworkOKO.Controllers
 
             var result = await articles.ToListAsync(); // Выполняем запрос и получаем результат
 
-            return View(result); // Возвращаем отфильтрованные статьи в представление
+            return View("Articles", result); // Возвращаем отфильтрованные статьи в представление
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Route("EditArticle/{id}")]
+        public async Task<IActionResult> EditArticle(int id)
+        {
+            var article = await _context.Articles
+                .Include(a => a.Comments)
+                .Include(a => a.ArticleTags)
+                .ThenInclude(at => at.Tag)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            return View(article); // Передаем объект Article в представление
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("EditArticle/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditArticle(int id, Article model)
+        {
+            if (id != model.Id)
+            {
+                return BadRequest();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var existingArticle = await _context.Articles
+                    .FirstOrDefaultAsync(a => a.Id == id);
+
+                if (existingArticle == null)
+                {
+                    return NotFound();
+                }
+
+                // Обновляем свойства существующей статьи
+                existingArticle.Title = model.Title;
+                existingArticle.Author = model.Author;
+                existingArticle.CreatedDate = model.CreatedDate;
+                existingArticle.Content = model.Content;
+
+                // Сохраняем изменения
+                await _context.SaveChangesAsync();
+                return RedirectToAction("DetailsArticle", new { id });
+            }
+
+            return View(model); // В случае ошибки возвращаем ту же модель для отображения ошибок
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteArticle(int id)
+        {
+            var article = _context.Articles.Find(id); // Находим статью по ID
+            if (article == null)
+            {
+                return NotFound(); // Если статья не найдена, возвращаем 404
+            }
+            try {
+                _context.Articles.Remove(article); // Удаляем статью из контекста
+                _context.SaveChanges(); // Сохраняем изменения в базе данных
+            }catch (Exception ex)
+            {
+                throw;
+            }
+
+            return RedirectToAction("Articles"); // Перенаправляем на список статей
         }
     }
 }

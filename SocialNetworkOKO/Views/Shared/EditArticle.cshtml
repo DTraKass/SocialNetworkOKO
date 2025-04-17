@@ -1,0 +1,139 @@
+﻿@model SocialNetworkOKO.Models.Article
+
+@{
+    ViewData["Title"] = "Редактирование статьи";
+}
+
+<h1 class="text-center mb-4">Редактирование статьи</h1>
+
+<form asp-action="EditArticle" asp-controller="Article" method="post" class="custom-form">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Заголовок</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Author" class="control-label">Автор</label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedDate" class="control-label">Дата создания</label>
+        <input asp-for="CreatedDate" class="form-control" type="date" />
+        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Содержание</label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Комментарии</label>
+        <ul class="comment-list">
+            @foreach (var comment in Model.Comments)
+            {
+                <li class="comment-item">@comment.Text</li>
+            }
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label>Теги</label>
+        <ul class="tag-list">
+            @foreach (var tag in Model.ArticleTags)
+            {
+                <li class="tag-item">@tag.Tag?.Name</li>
+            }
+        </ul>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    <a asp-action="Articles" class="btn btn-secondary">Выйти без изменений</a>
+</form>
+
+<style>
+    body {
+        background-color: #f0f4f8;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .custom-form {
+        background: white;
+        padding: 30px;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        color: #333;
+        font-weight: bold;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+    .comment-list, .tag-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .comment-item, .tag-item {
+        background: #e9ecef;
+        border-radius: 0.25rem;
+        padding: 10px;
+        margin: 5px 0;
+        transition: background 0.3s;
+    }
+
+        .comment-item:hover, .tag-item:hover {
+            background: #d3d3d3;
+        }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

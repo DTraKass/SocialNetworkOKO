@@ -8,7 +8,7 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4">Все статьи</h1>
 
-    <form method="get" action=/Article/SearchArticle class="mb-4">
+    <form method="get" asp-controller="Article" asp-action="SearchArticle" class="mb-4">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="searchString">Поиск по названию:</label>
@@ -42,8 +42,8 @@
                         <td>@article.Author</td>
                         <td>@article.CreatedDate.ToString("yyyy-MM-dd")</td>
                         <td>
-                            <a asp-action="Edit" asp-controller="Articles" asp-route-id="@article.Id" class="btn btn-warning btn-sm">Редактировать</a>
-                            <a asp-action="Delete" asp-controller="Articles" asp-route-id="@article.Id" class="btn btn-danger btn-sm">Удалить</a>
+                            <a asp-action="EditArticle" asp-controller="Article" asp-route-id="@article.Id" class="btn btn-warning btn-sm">Редактировать</a>
+                            <a asp-action="DeleteArticle" asp-controller="Article" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить эту статью?');" asp-route-id="@article.Id" class="btn btn-danger btn-sm">Удалить</a>
                         </td>
                     </tr>
                 }
